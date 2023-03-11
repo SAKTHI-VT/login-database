@@ -1,5 +1,5 @@
 <?php
-$uname = $_POST['UNAME'];
+$uname = $_POST['uname'];
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 $cpass = $_POST['cpass'];
@@ -8,7 +8,7 @@ if(!empty($uname) || !empty($email) || !empty($pass) || !empty($cpass))
     $host = "localhost";
     $dbusername = "root";
     $dbpassword = "";
-    $dbname = "";
+    $dbname = "project";
 
     $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
     if(mysqli_connect_error())
@@ -17,7 +17,7 @@ if(!empty($uname) || !empty($email) || !empty($pass) || !empty($cpass))
     }
     else
     {
-        $SELECT = "SELECT email From register Where email=?Limit 1";
+        $SELECT = "SELECT email From register Where email=? Limit 1";
         $INSERT = "INSERT Into register(uname,email,pass,cpass) values(?,?,?,?)";
 
         $stmt = $conn->prepare($SELECT);
