@@ -1,8 +1,8 @@
 <?php
 $uname = $_POST['uname'];
-// $email = $_POST['email'];
+$email = $_POST['email'];
 $pass = $_POST['pass'];
-// $cpass = $_POST['cpass'];
+$cpass = $_POST['cpass'];
 if(!empty($uname) || !empty($email) || !empty($pass) || !empty($cpass))
 {
     $host = "localhost";
