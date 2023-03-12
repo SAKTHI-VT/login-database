@@ -13,7 +13,8 @@ if(!empty($uname) || !empty($email) || !empty($pass) || !empty($cpass))
     $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
     if(mysqli_connect_error())
     {
-        die('connect Error ('.mysqli_connect_errno().')'.mysqli_connect_error());
+        die('connect Error ('.mysqli_connect_errno().')'
+        .mysqli_connect_error());
     }
     else
     {
@@ -48,4 +49,17 @@ else
     echo "All field are required";
     die();
 }
+/*$conn = new mysqli('localhost','root','','project');
+if($conn->connect_error)
+{
+    die('connection failed : '.$conn->connect_error);
+}
+else
+{
+    $stmt = $conn->prepare("insert into register(uname,email,pass,cpass)values(?,?,?,?)");
+    $stmt->bind_param("ssss",$uname,$email,$pass,$cpass);
+    $stmt->execute();
+    echo "registered Successfully....";
+    $stmt->close();
+}*/
 ?>
