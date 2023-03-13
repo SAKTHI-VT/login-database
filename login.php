@@ -49,17 +49,33 @@ else
     echo "All field are required";
     die();
 }
-/*$conn = new mysqli('localhost','root','','project');
-if($conn->connect_error)
+
+$con = new mysqli("localhost","root","","project");
+if($con->connect_error)
 {
-    die('connection failed : '.$conn->connect_error);
+    die("Failed to connect : ".$con->connect_error);
 }
 else
 {
-    $stmt = $conn->prepare("insert into register(uname,email,pass,cpass)values(?,?,?,?)");
-    $stmt->bind_param("ssss",$uname,$email,$pass,$cpass);
+    $stmt = $con->prepare("select * from register where uname = ?");
+    $stmt->bind_param("s",$uname);
     $stmt->execute();
-    echo "registered Successfully....";
-    $stmt->close();
-}*/
+    $stmt_result = $stmt->get_result();
+    if($stmt_result->num_rows>0)
+    {
+        $data = $stmt_result->fetch_assoc();
+        if($data['pass']==$pass)
+        {
+            echo "Login Successfull";
+        }
+        else
+        {
+            echo "<h2>Invalid Credintials</h2>";
+        }
+    }
+    else
+    {
+        echo "<h2>Invalid Credintials</h2>";
+    }
+}
 ?>
